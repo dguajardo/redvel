@@ -11,13 +11,21 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170123083150) do
+ActiveRecord::Schema.define(version: 20170123085522) do
 
   create_table "authors", force: true do |t|
     t.string   "name"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
+
+  create_table "authors_books", force: true do |t|
+    t.integer "book_id"
+    t.integer "author_id"
+  end
+
+  add_index "authors_books", ["author_id"], name: "index_authors_books_on_author_id"
+  add_index "authors_books", ["book_id"], name: "index_authors_books_on_book_id"
 
   create_table "books", force: true do |t|
     t.string   "title",            null: false
@@ -33,7 +41,10 @@ ActiveRecord::Schema.define(version: 20170123083150) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.string   "photo"
+    t.integer  "editorial_id"
   end
+
+  add_index "books", ["editorial_id"], name: "index_books_on_editorial_id"
 
   create_table "editorials", force: true do |t|
     t.string   "name"
