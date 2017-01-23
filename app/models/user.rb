@@ -23,4 +23,5 @@ class User < ActiveRecord::Base
   #       :recoverable, :rememberable, :trackable, :validatable
   devise :database_authenticatable, :lockable, :trackable, :timeoutable
   
+  
 end

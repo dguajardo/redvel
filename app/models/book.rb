@@ -24,4 +24,10 @@ class Book < ActiveRecord::Base
   mount_uploader :photo, PhotoUploader
   belongs_to :editorial
   has_and_belongs_to_many :authors
+  
+def self.search(search)
+  where("title LIKE ?", "%#{search}%") 
+  where("author LIKE ?", "%#{search}%")
+end
+
 end

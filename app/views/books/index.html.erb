@@ -1,3 +1,8 @@
+<%= form_tag(books_path, :method => "get", id: "search-form") do %>
+<%= text_field_tag :search, params[:search], placeholder: "Search Books" %>
+<%= submit_tag "Search" %>
+<% end %>
+
 <% content_for :title, "Lista de libros" %>
 <div id="books_index">
   <h1><%= yield :title %></h1>
@@ -20,7 +25,7 @@
           <div class="col col-xs-5 col-sm-4 col-md-1 toggle"><%=image_tag(book.photo , class:"img-responsive") if book.photo? %></div>
           <div class="col col-xs-5 col-sm-4 col-md-2 toggle"><%=book.title %></div>
           <div class="col col-xs-5 col-sm-3 col-md-2 toggle"><%=book.author%></div>
-          <div class="col hidden-xs col-sm-4 col-md-2 toggle"><%=book.editorial%></div>
+          <div class="col hidden-xs col-sm-4 col-md-2 toggle"><%=book.editorial if book.editorial%></div>
           <div class="col hidden-xs hidden-sm col-md-2 toggle"><%=book.edition%></div>
           <div class="col col-xs-2 col-sm-1 col-md-1">
             <%= link_to content_tag('i','', class: 'fa fa-eye'), book, class: 'tooltipable', title: 'Ver' %>
@@ -58,4 +63,5 @@
   <% end %>
 
   <%= link_to 'Agregar libro', new_book_path, class: 'btn btn-primary' %>
+
 </div>
