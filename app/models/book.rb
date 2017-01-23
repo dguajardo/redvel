@@ -21,6 +21,6 @@ class Book < ActiveRecord::Base
   
   validates :title, :author, :editorial, :presence => true
   validates :edition, :publication_year, numericality: { only_integer: true, greater_than: 0 }, allow_nil: true
-  
+  mount_uploader :photo, PhotoUploader
   
 end
